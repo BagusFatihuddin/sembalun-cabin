@@ -1,0 +1,2322 @@
+﻿<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sembalun Cabin Camp - Camping dengan Panorama Rinjani</title>
+    <meta
+      name="description"
+      content="Camping tenda dengan panorama langsung ke Gunung Rinjani di Sembalun, Lombok Timur. Api unggun setiap malam, sunrise dari balik puncak. Booking via WhatsApp."
+    />
+    <link rel="icon" type="image/png" sizes="32x32" href="asset\images\logo.jpg">
+<link rel="icon" type="image/png" sizes="16x16" href="asset\images\logo.jpg">
+<link rel="apple-touch-icon" sizes="180x180" href="asset\images\logo.jpg">
+
+    <!-- Google Fonts: Bricolage Grotesque (display, distinctive grotesk w/ italic), Plus Jakarta Sans (body), Space Mono (utility/eyebrow) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:ital,opsz,wght@0,12..96,400;0,12..96,500;0,12..96,600;0,12..96,700;0,12..96,800;1,12..96,500;1,12..96,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind CSS (Play CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              stone: "#FFF8EF",
+              mist: "#E9F5F7",
+              moss: "#0D1B2E",
+              "moss-2": "#070F1C",
+              forest: "#1596BE",
+              "forest-light": "#5FCBE0",
+              clay: "#FF7A45",
+              "clay-light": "#FFA06B",
+              cream: "#FFFCF6",
+              gold: "#FFC352",
+            },
+            fontFamily: {
+              display: ['"Bricolage Grotesque"', "sans-serif"],
+              body: ['"Plus Jakarta Sans"', "sans-serif"],
+              mono: ['"Space Mono"', "monospace"],
+            },
+            boxShadow: {
+              soft: "0 20px 60px -20px rgba(13,27,46,0.35)",
+            },
+          },
+        },
+      };
+    </script>
+
+    <!-- AOS: subtle scroll reveal -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        background-color: #fff8ef;
+      }
+
+      ::selection {
+        background: #ff7a45;
+        color: #fffcf6;
+      }
+
+      a:focus-visible,
+      button:focus-visible,
+      summary:focus-visible {
+        outline: 2px solid #ff7a45;
+        outline-offset: 3px;
+        border-radius: 2px;
+      }
+
+      /* Signpost eyebrow - arrow/pennant shape, echoes the wooden trail sign at the camp entrance */
+      .signpost {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 1.25rem 0.5rem 0.9rem;
+        background: #1596be;
+        color: #fffcf6;
+        font-family: "Space Mono", monospace;
+        font-size: 0.68rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        clip-path: polygon(0 0, 88% 0, 100% 50%, 88% 100%, 0 100%);
+      }
+      .signpost--dark {
+        background: #fffcf6;
+        color: #0d1b2e;
+      }
+      .signpost--clay {
+        background: #ff7a45;
+        color: #fffcf6;
+      }
+
+      /* Mountain skyline dividers between sections */
+      .skyline {
+        display: block;
+        width: 100%;
+        height: 64px;
+      }
+      @media (min-width: 768px) {
+        .skyline {
+          height: 100px;
+        }
+      }
+
+      /* Polaroid frame for the authentic on-site photo */
+      .polaroid {
+        background: #fffcf6;
+        padding: 0.75rem 0.75rem 1.5rem 0.75rem;
+        box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.45);
+        transform: rotate(-4deg);
+      }
+      .polaroid img {
+        display: block;
+      }
+
+      .mono-tag {
+        font-family: "Space Mono", monospace;
+        letter-spacing: 0.08em;
+      }
+
+      /* FAQ chevron rotation */
+      details[open] .faq-chevron {
+        transform: rotate(180deg);
+      }
+      .faq-chevron {
+        transition: transform 0.3s ease;
+      }
+      summary::-webkit-details-marker {
+        display: none;
+      }
+      summary {
+        list-style: none;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          animation-duration: 0.001ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.001ms !important;
+          scroll-behavior: auto !important;
+        }
+      }
+
+      .masonry {
+        column-gap: 1.1rem;
+      }
+      .masonry-item {
+        break-inside: avoid;
+        margin-bottom: 1.1rem;
+      }
+
+      /* ============================================================ */
+      /* HERO SLIDESHOW - auto-changing photos, Ken Burns + crossfade  */
+      /* ============================================================ */
+      .hero-stage {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+      }
+      .hero-slide {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        transition: opacity 2.2s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .hero-slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transform: scale(1.1);
+        animation: none;
+      }
+      .hero-slide.is-active {
+        opacity: 1;
+        z-index: 1;
+      }
+      .hero-slide.is-active img {
+        animation: kenburns 9.5s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+      }
+      @keyframes kenburns {
+        from {
+          transform: scale(1.13) translate3d(0, 0, 0);
+        }
+        to {
+          transform: scale(1) translate3d(-1%, -1%, 0);
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .hero-slide.is-active img {
+          animation: none;
+          transform: scale(1);
+        }
+      }
+
+      .hero-dots {
+        display: flex;
+        gap: 0.5rem;
+      }
+      .hero-dot {
+        width: 1.1rem;
+        height: 2px;
+        border-radius: 2px;
+        background: rgba(255, 252, 246, 0.28);
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+      }
+      .hero-dot::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: #fffcf6;
+        transform: scaleX(0);
+        transform-origin: left;
+      }
+      .hero-dot.is-active::after {
+        animation: dotfill 6.5s linear forwards;
+      }
+      @keyframes dotfill {
+        from {
+          transform: scaleX(0);
+        }
+        to {
+          transform: scaleX(1);
+        }
+      }
+
+      /* ============================================================ */
+      /* HERO EXPERIENCE CARD - floating chapter card, syncs w/ slide  */
+      /* ============================================================ */
+      .exp-card {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.8rem;
+        background: rgba(255, 252, 246, 0.1);
+        border: 1px solid rgba(255, 252, 246, 0.18);
+        -webkit-backdrop-filter: blur(14px);
+        backdrop-filter: blur(14px);
+        padding: 0.85rem 1.3rem;
+        border-radius: 1.1rem;
+        animation: expfloat 5s ease-in-out infinite;
+      }
+      .exp-card .exp-icon {
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 0.75rem;
+        background: rgba(255, 252, 246, 0.12);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.15rem;
+        shrink: 0;
+      }
+      .exp-fade-enter {
+        animation: expfade 1.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+      }
+      @keyframes expfade {
+        0% {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes expfloat {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-7px);
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .exp-card {
+          animation: none;
+        }
+      }
+
+      /* ============================================================ */
+      /* TRAIL TICKET - floating quick-book card, signature component  */
+      /* ============================================================ */
+      .trail-ticket {
+        position: relative;
+        display: grid;
+        background: #fffcf6;
+        border-radius: 1.75rem;
+        box-shadow: 0 30px 70px -25px rgba(13, 27, 46, 0.4);
+      }
+      @media (min-width: 640px) {
+        .trail-ticket {
+          grid-template-columns: 1fr auto;
+        }
+      }
+      .trail-ticket .stub {
+        position: relative;
+        border-top: 2px dashed rgba(13, 27, 46, 0.14);
+      }
+      @media (min-width: 640px) {
+        .trail-ticket .stub {
+          border-top: none;
+          border-left: 2px dashed rgba(13, 27, 46, 0.14);
+        }
+      }
+      .trail-ticket .stub::before,
+      .trail-ticket .stub::after {
+        content: "";
+        position: absolute;
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        background: #e9f5f7;
+        z-index: 2;
+      }
+      .trail-ticket .stub::before {
+        top: -11px;
+        left: -11px;
+      }
+      .trail-ticket .stub::after {
+        bottom: -11px;
+        left: -11px;
+      }
+      @media (min-width: 640px) {
+        .trail-ticket .stub::before {
+          top: -11px;
+          left: -11px;
+        }
+        .trail-ticket .stub::after {
+          top: auto;
+          bottom: -11px;
+          left: -11px;
+        }
+      }
+
+      /* ============================================================ */
+      /* SCROLL "TRAIL" PROGRESS - page reads as a climb to the summit */
+      /* ============================================================ */
+      #trail-progress {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 3px;
+        width: 0%;
+        background: linear-gradient(90deg, #ff7a45, #ffc352);
+        z-index: 60;
+        transition: width 0.1s linear;
+      }
+      #trail-marker {
+        position: fixed;
+        top: 8px;
+        left: 0%;
+        z-index: 61;
+        transform: translateX(-50%);
+        transition:
+          left 0.12s linear,
+          opacity 0.3s ease;
+        opacity: 0;
+        pointer-events: none;
+      }
+      #trail-marker.is-visible {
+        opacity: 1;
+      }
+
+      #section-pill {
+        position: fixed;
+        left: 1.1rem;
+        bottom: 5.5rem;
+        z-index: 40;
+        background: rgba(13, 27, 46, 0.92);
+        color: #fffcf6;
+        font-family: "Space Mono", monospace;
+        font-size: 0.64rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        padding: 0.5rem 0.9rem;
+        border-radius: 999px;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        opacity: 0;
+        transform: translateY(8px);
+        transition:
+          opacity 0.35s ease,
+          transform 0.35s ease;
+        pointer-events: none;
+      }
+      #section-pill.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      @media (min-width: 1024px) {
+        #section-pill {
+          bottom: 2.2rem;
+        }
+      }
+
+      /* ============================================================ */
+      /* SPOT STAMPS - circular destination-style stickers             */
+      /* ============================================================ */
+      .spot-stamp {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 1/1;
+        border-radius: 999px;
+        overflow: hidden;
+        border: 3px dashed rgba(255, 252, 246, 0.35);
+        padding: 5px;
+        transition:
+          transform 0.4s ease,
+          border-color 0.4s ease;
+      }
+      .spot-stamp:hover {
+        transform: rotate(6deg) scale(1.04);
+        border-color: #ffc352;
+      }
+      .spot-stamp img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 999px;
+      }
+
+      /* Ribbon badge for the "most-picked" package, riffing on discount-tag stickers */
+      .ribbon {
+        position: absolute;
+        top: -10px;
+        right: 18px;
+        background: #ffc352;
+        color: #0d1b2e;
+        font-family: "Space Mono", monospace;
+        font-size: 0.62rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        padding: 0.4rem 0.75rem;
+        border-radius: 999px;
+        box-shadow: 0 8px 20px -8px rgba(255, 195, 82, 0.8);
+      }
+
+      /* Animated counters */
+      .counter {
+        font-variant-numeric: tabular-nums;
+      }
+    </style>
+  </head>
+
+  <body class="font-body text-moss antialiased">
+    <!-- Scroll "trail" progress - the page reads as a climb toward the summit -->
+    <div id="trail-progress"></div>
+    <div id="trail-marker">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+        <path d="M2 20L9 7L13 13.5L16 9L22 20H2Z" fill="#0D1B2E" />
+        <path d="M13 13.5L16 9L18.5 13.5L16 15L13 13.5Z" fill="#FFC352" />
+      </svg>
+    </div>
+    <div id="section-pill">
+      <i data-lucide="map-pin" class="w-3 h-3"></i
+      ><span id="section-pill-text">Beranda</span>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- NAVIGATION                                                    -->
+    <!-- ============================================================ -->
+    <header
+      id="site-header"
+      class="fixed top-0 inset-x-0 z-50 transition-all duration-300"
+    >
+      <nav
+        class="max-w-7xl mx-auto flex items-center justify-between px-5 md:px-10 py-4"
+      >
+        <!-- Logo -->
+        <a href="#top" class="flex items-center gap-2.5 group">
+          <img
+            src="asset/images/logo.jpg"
+            alt="Sembalun Cabin Camp logo"
+            width="56"
+            height="56"
+            class="object-cover rounded-full"
+          />
+          <span
+            id="logo-text"
+            class="font-display text-[15px] tracking-tight transition-colors duration-300 text-cream/90"
+            >Sembalun <span class="italic font-medium">Cabin Camp</span></span
+          >
+        </a>
+
+        <!-- Desktop links -->
+        <div
+          id="nav-links"
+          class="hidden lg:flex items-center gap-7 font-mono text-[10px] uppercase tracking-[0.13em] transition-colors duration-300 text-cream/70"
+        >
+          <a href="#paket" class="hover:text-cream transition-colors">Paket</a>
+          <a href="#galeri" class="hover:text-cream transition-colors"
+            >Galeri</a
+          >
+          <a href="#pengalaman" class="hover:text-cream transition-colors"
+            >Pengalaman</a
+          >
+          <a href="#fasilitas" class="hover:text-cream transition-colors"
+            >Fasilitas</a
+          >
+          <a href="#lokasi" class="hover:text-cream transition-colors"
+            >Lokasi</a
+          >
+          <a href="#faq" class="hover:text-cream transition-colors">FAQ</a>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <a
+            href="https://wa.me/6281936662117?text=Halo%2C%20saya%20ingin%20tanya-tanya%20soal%20camping%20di%20Sembalun%20Cabin%20Camp."
+            target="_blank"
+            rel="noopener"
+            class="hidden sm:inline-flex items-center gap-2 border border-cream/30 hover:border-cream/70 text-cream/90 font-mono text-[10px] uppercase tracking-[0.12em] px-4 py-2 rounded-full transition-colors"
+          >
+            Booking
+          </a>
+          <button
+            id="menu-btn"
+            aria-label="Buka menu"
+            class="lg:hidden text-cream/90"
+          >
+            <i data-lucide="menu" class="w-5 h-5"></i>
+          </button>
+        </div>
+      </nav>
+
+      <!-- Mobile menu -->
+      <div
+        id="mobile-menu"
+        class="hidden lg:hidden bg-moss/98 backdrop-blur px-6 pb-8 pt-2"
+      >
+        <div
+          class="flex flex-col gap-1 font-mono text-sm uppercase tracking-[0.1em] text-cream/90"
+        >
+          <a href="#paket" class="py-3 border-b border-cream/10">Paket</a>
+          <a href="#galeri" class="py-3 border-b border-cream/10">Galeri</a>
+          <a href="#pengalaman" class="py-3 border-b border-cream/10"
+            >Pengalaman</a
+          >
+          <a href="#fasilitas" class="py-3 border-b border-cream/10"
+            >Fasilitas</a
+          >
+          <a href="#lokasi" class="py-3 border-b border-cream/10">Lokasi</a>
+          <a href="#faq" class="py-3">FAQ</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="top">
+      <!-- ============================================================ -->
+      <!-- 1. HERO - auto-changing slideshow, day â†’ night narrative      -->
+      <!-- ============================================================ -->
+      <section
+        id="beranda"
+        data-section-name="Beranda"
+        class="relative min-h-[100svh] flex flex-col overflow-hidden bg-moss"
+      >
+        <div class="hero-stage">
+          <div
+            class="hero-slide is-active"
+            data-title="Gerbang Camp"
+            data-time="05:30 · Pagi"
+            data-icon="🪧"
+          >
+            <img
+              src="asset/images/SaveClip.App_724174923_18067258277705047_1860599128480585895_n.jpg"
+              alt="Matahari terbit di balik Gunung Rinjani"
+              loading="eager"
+            />
+          </div>
+          <div
+            class="hero-slide"
+            data-title="Pagi Cerah"
+            data-time="05:45 · Pagi"
+            data-icon="🌅"
+          >
+            <img
+              src="asset/images/SaveClip.App_727415427_18067258268705047_3975727112803311371_n.jpg"
+              alt="Cahaya keemasan di atas bukit Sembalun"
+            />
+          </div>
+          <div
+            class="hero-slide"
+            data-title="Lapak Siang"
+            data-time="10:00 · Siang"
+            data-icon="⛺"
+          >
+            <img
+              src="asset/images/SaveClip.App_723172669_18067258313705047_6561859321744105305_n.jpg"
+              alt="Deretan tenda di lapak camp saat siang hari"
+            />
+          </div>
+          <div
+            class="hero-slide"
+            data-title="Malam Hangat"
+            data-time="19:30 · Malam"
+            data-icon="🌙"
+          >
+            <img
+              src="asset/images/SaveClip.App_727220794_18067258328705047_7923886747010068247_n.jpg"
+              alt="Api unggun menyala di tengah malam"
+            />
+          </div>
+          <div
+            class="hero-slide"
+            data-title="Langit Bintang"
+            data-time="22:00 · Larut"
+            data-icon="✨"
+          >
+            <img
+              src="asset/images/SaveClip.App_725971733_18067258367705047_7232396240599961940_n.jpg"
+              alt="Tenda dengan lampu hangat di bawah langit berbintang"
+            />
+          </div>
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-moss via-moss/35 to-moss/25 z-[2]"
+          ></div>
+          <div class="absolute inset-0 bg-moss/10 z-[2]"></div>
+        </div>
+
+        <!-- Floating experience card - synchronizes with the active slide -->
+        <div
+          class="relative z-10 flex-1 flex items-end lg:items-center px-5 md:px-10 pb-6 lg:pb-0"
+        >
+          <div class="max-w-7xl mx-auto w-full">
+            <div class="hidden sm:flex justify-end lg:justify-end">
+              <div
+                class="exp-card text-cream"
+                id="exp-card"
+                data-aos="fade-up"
+                data-aos-delay="400"
+              >
+                <span class="exp-icon" id="exp-icon">🪧</span>
+                <div>
+                  <p
+                    class="font-display font-semibold text-sm leading-tight"
+                    id="exp-title"
+                  >
+                    Gerbang Camp
+                  </p>
+                  <p
+                    class="mono-tag text-[10px] text-cream/60 uppercase tracking-[0.1em]"
+                    id="exp-time"
+                  >
+                    05:30 · Pagi
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Headline block - vertically balanced, minimal copy -->
+        <div class="relative z-10 px-5 md:px-10 pb-10 md:pb-14">
+          <div class="max-w-7xl mx-auto w-full text-center lg:text-left">
+            <div data-aos="fade-up" data-aos-duration="1000">
+              <span class="signpost mb-6"
+                ><i data-lucide="corner-down-right" class="w-3 h-3"></i>
+                Sembalun Â· Kaki Rinjani</span
+              >
+              <h1
+                class="font-display font-semibold text-cream text-[2.75rem] leading-[1.02] sm:text-7xl md:text-8xl lg:text-[6.5rem] lg:leading-[0.96] tracking-tight max-w-4xl mx-auto lg:mx-0"
+              >
+                Gunung yang
+                <span class="italic font-medium text-clay-light">menyapa</span>
+                lebih dulu.
+              </h1>
+              <p
+                class="mt-5 text-cream/70 text-base md:text-lg max-w-md mx-auto lg:mx-0"
+              >
+                Tenda, sunrise, dan malam yang langsung menghadap Rinjani.
+              </p>
+
+              <div
+                class="mt-8 flex flex-col sm:flex-row items-center lg:items-start gap-5"
+              >
+                <a
+                  href="https://wa.me/6281936662117?text=Halo%2C%20saya%20ingin%20booking%20camping%20di%20Sembalun%20Cabin%20Camp."
+                  target="_blank"
+                  rel="noopener"
+                  class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-clay hover:bg-clay-light text-cream px-8 py-4 rounded-full font-mono text-xs uppercase tracking-[0.14em] transition-all hover:-translate-y-0.5 shadow-soft"
+                >
+                  Tidur di Bawah Bintang
+                </a>
+                <!-- Chapter dots -->
+                <div class="hero-dots" id="hero-dots" aria-hidden="true">
+                  <button class="hero-dot is-active" data-slide="0"></button>
+                  <button class="hero-dot" data-slide="1"></button>
+                  <button class="hero-dot" data-slide="2"></button>
+                  <button class="hero-dot" data-slide="3"></button>
+                  <button class="hero-dot" data-slide="4"></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Authentic on-site photo + quick-book trail ticket, right below the fold -->
+      <div class="bg-moss px-5 md:px-10 pb-14 md:pb-20 pt-2">
+        <div
+          class="max-w-7xl mx-auto grid lg:grid-cols-[auto_1fr] gap-8 items-center"
+        >
+          <div class="hidden lg:block" data-aos="fade-right">
+            <div class="polaroid w-48">
+              <img
+                src="asset/images/SaveClip.App_727159214_18067258313705047_6561859321744105305_n.jpg"
+                alt="Sunset di area camp"
+                class="w-full h-auto object-cover"
+              />
+              <p class="mono-tag text-[9px] text-moss/70 text-center pt-2">
+                foto asli lokasi
+              </p>
+            </div>
+          </div>
+          <div class="lg:hidden" data-aos="fade-up">
+            <div class="polaroid max-w-[220px] mx-auto">
+              <img
+                src="asset/images/SaveClip.App_727159214_18067258313705047_6561859321744105305_n.jpg"
+                alt="Sunset di area camp"
+                class="w-full h-auto object-cover"
+              />
+              <p class="mono-tag text-[9px] text-moss/70 text-center pt-2">
+                foto asli lokasi
+              </p>
+            </div>
+          </div>
+
+          <div data-aos="fade-up" data-aos-delay="100">
+            <div class="trail-ticket max-w-3xl lg:ml-auto">
+              <div
+                class="p-6 md:p-7 flex flex-col sm:flex-row sm:items-center gap-5"
+              >
+                <div class="flex items-center gap-3">
+                  <div
+                    class="w-11 h-11 rounded-full bg-forest/10 flex items-center justify-center shrink-0"
+                  >
+                    <i data-lucide="tent" class="w-5 h-5 text-forest"></i>
+                  </div>
+                  <div>
+                    <p class="mono-tag text-[10px] uppercase text-moss/45">
+                      Mau camping kapan?
+                    </p>
+                    <p class="font-display font-semibold text-moss text-lg">
+                      Cek tanggal & lapak tersedia
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="stub p-6 md:p-7 flex items-center">
+                <a
+                  href="https://wa.me/6281936662117?text=Halo%2C%20saya%20ingin%20booking%20camping%20di%20Sembalun%20Cabin%20Camp."
+                  target="_blank"
+                  rel="noopener"
+                  class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-clay hover:bg-clay-light text-cream px-7 py-3.5 rounded-full font-mono text-xs uppercase tracking-[0.12em] transition-all hover:-translate-y-0.5 whitespace-nowrap"
+                >
+                  <svg
+                    width="15"
+                    height="15"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M17.6 6.3A9 9 0 0 0 3 17.7L2 22l4.4-1.1A9 9 0 1 0 17.6 6.3ZM12 20a7.9 7.9 0 0 1-4-1.1l-.3-.2-2.6.7.7-2.5-.2-.3A8 8 0 1 1 12 20Zm4.4-6c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1s-.6.8-.7.9-.3.2-.5.1a6.6 6.6 0 0 1-1.9-1.2 7 7 0 0 1-1.3-1.6c-.1-.2 0-.4.1-.5l.4-.4.2-.4v-.4c0-.1-.5-1.3-.7-1.7-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.6.3 2.7 2.7 0 0 0-.9 2 4.7 4.7 0 0 0 1 2.5 10.8 10.8 0 0 0 4.1 3.6c.6.2 1 .4 1.4.5a3.3 3.3 0 0 0 1.5.1 2.5 2.5 0 0 0 1.6-1.1 2 2 0 0 0 .1-1.1c-.1-.1-.2-.2-.5-.3Z"
+                    />
+                  </svg>
+                  Booking Sekarang
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================================ -->
+      <!-- 2. QUICK INFO + LIVE COUNTERS                                 -->
+      <!-- ============================================================ -->
+      <section
+        data-section-name="Info Cepat"
+        class="bg-moss-2 border-t border-cream/10 pt-8 md:pt-10"
+      >
+        <div
+          class="max-w-7xl mx-auto px-5 md:px-10 py-9 grid grid-cols-2 md:grid-cols-5 gap-8 md:gap-6"
+        >
+          <div class="flex items-start gap-3" data-aos="fade-up">
+            <i
+              data-lucide="clock"
+              class="w-5 h-5 text-clay-light shrink-0 mt-0.5"
+            ></i>
+            <div>
+              <p class="mono-tag text-[10px] uppercase text-cream/50 mb-1">
+                Check-in
+              </p>
+              <p class="text-cream text-sm font-medium">14.00 - 21.00 WITA</p>
+            </div>
+          </div>
+          <div
+            class="flex items-start gap-3"
+            data-aos="fade-up"
+            data-aos-delay="50"
+          >
+            <i
+              data-lucide="map-pin"
+              class="w-5 h-5 text-clay-light shrink-0 mt-0.5"
+            ></i>
+            <div>
+              <p class="mono-tag text-[10px] uppercase text-cream/50 mb-1">
+                Lokasi
+              </p>
+              <p class="text-cream text-sm font-medium">
+                Sembalun, Lombok Timur
+              </p>
+            </div>
+          </div>
+          <div
+            class="flex items-start gap-3"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            <i
+              data-lucide="banknote"
+              class="w-5 h-5 text-clay-light shrink-0 mt-0.5"
+            ></i>
+            <div>
+              <p class="mono-tag text-[10px] uppercase text-cream/50 mb-1">
+                Mulai dari
+              </p>
+              <p class="text-cream text-sm font-medium">IDR 50.000/pax</p>
+            </div>
+          </div>
+          <div
+            class="flex items-start gap-3"
+            data-aos="fade-up"
+            data-aos-delay="150"
+          >
+            <i
+              data-lucide="users"
+              class="w-5 h-5 text-clay-light shrink-0 mt-0.5"
+            ></i>
+            <div>
+              <p class="mono-tag text-[10px] uppercase text-cream/50 mb-1">
+                Cocok untuk
+              </p>
+              <p class="text-cream text-sm font-medium">
+                Pasangan & grup kecil
+              </p>
+            </div>
+          </div>
+          <div
+            class="flex items-start gap-3 col-span-2 md:col-span-1"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            <i
+              data-lucide="phone-call"
+              class="w-5 h-5 text-clay-light shrink-0 mt-0.5"
+            ></i>
+            <div>
+              <p class="mono-tag text-[10px] uppercase text-cream/50 mb-1">
+                Kontak
+              </p>
+              <p class="text-cream text-sm font-medium">+62 819-3666-2117</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Live counters - the numbers climb into view as you scroll -->
+        <div class="max-w-7xl mx-auto px-5 md:px-10 pb-10">
+          <div
+            class="grid grid-cols-3 gap-4 md:gap-8 border-t border-cream/10 pt-8"
+          >
+            <div class="text-center" data-aos="fade-up">
+              <p class="font-display font-bold text-3xl md:text-5xl text-cream">
+                <span class="counter" data-target="1200" data-suffix="">0</span>
+              </p>
+              <p
+                class="mono-tag text-[10px] md:text-xs uppercase text-cream/50 mt-2"
+              >
+                Mdpl ketinggian
+              </p>
+            </div>
+            <div class="text-center" data-aos="fade-up" data-aos-delay="80">
+              <p
+                class="font-display font-bold text-3xl md:text-5xl text-clay-light"
+              >
+                <span class="counter" data-target="10" data-suffix="-24°C"
+                  >0</span
+                >
+              </p>
+              <p
+                class="mono-tag text-[10px] md:text-xs uppercase text-cream/50 mt-2"
+              >
+                Suhu harian
+              </p>
+            </div>
+            <div class="text-center" data-aos="fade-up" data-aos-delay="160">
+              <p class="font-display font-bold text-3xl md:text-5xl text-cream">
+                <span class="counter" data-target="4" data-suffix=" jam"
+                  >0</span
+                >
+              </p>
+              <p
+                class="mono-tag text-[10px] md:text-xs uppercase text-cream/50 mt-2"
+              >
+                Dari Mataram
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- 3. WHY SEMBALUN                                               -->
+      <!-- ============================================================ -->
+      <section data-section-name="Kenapa Kami" class="bg-stone py-24 md:py-32">
+        <div class="max-w-7xl mx-auto px-5 md:px-10">
+          <div class="mb-14 max-w-2xl" data-aos="fade-up">
+            <span class="signpost mb-6"
+              ><i data-lucide="corner-down-right" class="w-3 h-3"></i> Kenapa
+              Sembalun</span
+            >
+            <h2
+              class="font-display font-semibold text-3xl md:text-5xl leading-[1.1] tracking-tight text-moss mb-4"
+            >
+              Bukan sekadar tenda di padang rumput.
+            </h2>
+            <p class="text-moss/70 text-base md:text-lg leading-relaxed">
+              Kami bangun pengalaman camping yang sederhana, tapi tepat di titik
+              terbaik untuk melihat Rinjani.
+            </p>
+          </div>
+
+          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            <!-- Card 1 -->
+            <div
+              class="group bg-mist rounded-3xl p-8 hover:bg-moss transition-colors duration-500"
+              data-aos="fade-up"
+            >
+              <i
+                data-lucide="mountain"
+                class="w-7 h-7 text-forest group-hover:text-clay-light transition-colors"
+              ></i>
+              <h3
+                class="font-display font-semibold text-xl mt-5 mb-2 text-moss group-hover:text-cream transition-colors"
+              >
+                Pemandangan Langsung Rinjani
+              </h3>
+              <p
+                class="text-sm text-moss/65 group-hover:text-cream/70 leading-relaxed transition-colors"
+              >
+                Tidak perlu trekking jauh - gunung itu sudah berdiri tepat di
+                depan tenda.
+              </p>
+            </div>
+            <!-- Card 2 -->
+            <div
+              class="group bg-mist rounded-3xl p-8 hover:bg-moss transition-colors duration-500"
+              data-aos="fade-up"
+              data-aos-delay="60"
+            >
+              <i
+                data-lucide="wind"
+                class="w-7 h-7 text-forest group-hover:text-clay-light transition-colors"
+              ></i>
+              <h3
+                class="font-display font-semibold text-xl mt-5 mb-2 text-moss group-hover:text-cream transition-colors"
+              >
+                Udara Pegunungan Asli
+              </h3>
+              <p
+                class="text-sm text-moss/65 group-hover:text-cream/70 leading-relaxed transition-colors"
+              >
+                Suhu sejuk 10°C-24°C sepanjang hari, jauh dari asap dan bising
+                kota.
+              </p>
+            </div>
+            <!-- Card 3 -->
+            <div
+              class="group bg-mist rounded-3xl p-8 hover:bg-moss transition-colors duration-500"
+              data-aos="fade-up"
+              data-aos-delay="120"
+            >
+              <i
+                data-lucide="flame"
+                class="w-7 h-7 text-forest group-hover:text-clay-light transition-colors"
+              ></i>
+              <h3
+                class="font-display font-semibold text-xl mt-5 mb-2 text-moss group-hover:text-cream transition-colors"
+              >
+                Api Unggun Setiap Malam
+              </h3>
+              <p
+                class="text-sm text-moss/65 group-hover:text-cream/70 leading-relaxed transition-colors"
+              >
+                Ngobrol sampai larut, ditemani percikan api dan langit penuh
+                bintang.
+              </p>
+            </div>
+            <!-- Card 4 -->
+            <div
+              class="group bg-mist rounded-3xl p-8 hover:bg-moss transition-colors duration-500"
+              data-aos="fade-up"
+            >
+              <i
+                data-lucide="sunrise"
+                class="w-7 h-7 text-forest group-hover:text-clay-light transition-colors"
+              ></i>
+              <h3
+                class="font-display font-semibold text-xl mt-5 mb-2 text-moss group-hover:text-cream transition-colors"
+              >
+                Sunrise dari Balik Puncak
+              </h3>
+              <p
+                class="text-sm text-moss/65 group-hover:text-cream/70 leading-relaxed transition-colors"
+              >
+                Alarm terbaikmu adalah cahaya pertama yang muncul persis di
+                balik Rinjani.
+              </p>
+            </div>
+            <!-- Card 5 -->
+            <div
+              class="group bg-mist rounded-3xl p-8 hover:bg-moss transition-colors duration-500"
+              data-aos="fade-up"
+              data-aos-delay="60"
+            >
+              <i
+                data-lucide="tent"
+                class="w-7 h-7 text-forest group-hover:text-clay-light transition-colors"
+              ></i>
+              <h3
+                class="font-display font-semibold text-xl mt-5 mb-2 text-moss group-hover:text-cream transition-colors"
+              >
+                Fleksibel untuk Segala Gaya
+              </h3>
+              <p
+                class="text-sm text-moss/65 group-hover:text-cream/70 leading-relaxed transition-colors"
+              >
+                Dari backpacker hemat sampai glamour tenda, bawa perlengkapan
+                sendiri juga bisa.
+              </p>
+            </div>
+            <!-- Card 6 -->
+            <div
+              class="group bg-mist rounded-3xl p-8 hover:bg-moss transition-colors duration-500"
+              data-aos="fade-up"
+              data-aos-delay="120"
+            >
+              <i
+                data-lucide="map-pin"
+                class="w-7 h-7 text-forest group-hover:text-clay-light transition-colors"
+              ></i>
+              <h3
+                class="font-display font-semibold text-xl mt-5 mb-2 text-moss group-hover:text-cream transition-colors"
+              >
+                Dekat, Tapi Tetap Sepi
+              </h3>
+              <p
+                class="text-sm text-moss/65 group-hover:text-cream/70 leading-relaxed transition-colors"
+              >
+                Akses mudah dari pusat Sembalun, namun suasananya tetap privat
+                dan tenang.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- 4. CAMPING PACKAGES                                           -->
+      <!-- ============================================================ -->
+      <section
+        id="paket"
+        data-section-name="Paket Camping"
+        class="bg-mist py-24 md:py-32 scroll-mt-24"
+      >
+        <div class="max-w-7xl mx-auto px-5 md:px-10">
+          <div class="mb-14 max-w-2xl" data-aos="fade-up">
+            <span class="signpost mb-6"
+              ><i data-lucide="corner-down-right" class="w-3 h-3"></i> Paket
+              Camping</span
+            >
+            <h2
+              class="font-display font-semibold text-3xl md:text-5xl leading-[1.1] tracking-tight text-moss mb-4"
+            >
+              Pilih cara kamu bermalam di Sembalun.
+            </h2>
+            <p class="text-moss/70 text-base md:text-lg leading-relaxed">
+              Empat cara menikmati malam di kaki Rinjani - sesuaikan dengan gaya
+              dan rombonganmu.
+            </p>
+          </div>
+
+          <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Package: Own Tent -->
+            <div
+              class="flex flex-col bg-stone rounded-3xl p-7 border border-moss/10"
+              data-aos="fade-up"
+            >
+              <span
+                class="mono-tag text-[10px] uppercase text-forest bg-forest/10 self-start px-3 py-1 rounded-full mb-6"
+                >Bawa Sendiri</span
+              >
+              <h3 class="font-display font-semibold text-2xl text-moss mb-1">
+                Own Tent
+              </h3>
+              <p class="text-xs text-moss/50 mb-5">
+                Bawa peralatan camping sendiri
+              </p>
+              <div class="mb-6">
+                <span class="font-display font-semibold text-3xl text-moss"
+                  >IDR 50rb</span
+                >
+                <span class="text-sm text-moss/50">/pax</span>
+              </div>
+              <ul class="space-y-2.5 text-sm text-moss/70 mb-8 flex-1">
+                <li class="flex items-start gap-2">
+                  <i
+                    data-lucide="check"
+                    class="w-4 h-4 text-clay mt-0.5 shrink-0"
+                  ></i
+                  >Lokasi lapak tenda terbaik
+                </li>
+                <li class="flex items-start gap-2">
+                  <i
+                    data-lucide="check"
+                    class="w-4 h-4 text-clay mt-0.5 shrink-0"
+                  ></i
+                  >Akses toilet & musala
+                </li>
+                <li class="flex items-start gap-2">
+                  <i
+                    data-lucide="check"
+                    class="w-4 h-4 text-clay mt-0.5 shrink-0"
+                  ></i
+                  >Akses area api unggun
+                </li>
+              </ul>
+              <a
+                href="https://wa.me/6281936662117?text=Halo%2C%20saya%20ingin%20booking%20Paket%20Own%20Tent%20di%20Sembalun%20Cabin%20Camp."
+                target="_blank"
+                rel="noopener"
+                class="text-center border border-moss/20 hover:border-moss text-moss rounded-full py-3 font-mono text-[11px] uppercase tracking-[0.1em] transition-colors"
+                >Booking Paket Ini</a
+              >
+            </div>
+
+            <!-- Package: Backpacker -->
+            <div
+              class="flex flex-col bg-stone rounded-3xl p-7 border border-moss/10"
+              data-aos="fade-up"
+              data-aos-delay="60"
+            >
+              <span
+                class="mono-tag text-[10px] uppercase text-forest bg-forest/10 self-start px-3 py-1 rounded-full mb-6"
+                >Hemat Â· min 2 pax</span
+              >
+              <h3 class="font-display font-semibold text-2xl text-moss mb-1">
+                Backpacker
+              </h3>
+              <p class="text-xs text-moss/50 mb-5">
+                Perlengkapan lengkap, gaya simpel
+              </p>
+              <div class="mb-6">
+                <span class="font-display font-semibold text-3xl text-moss"
+                  >IDR 70rb</span
+                >
+                <span class="text-sm text-moss/50">/pax</span>
+              </div>
+              <ul class="space-y-2.5 text-sm text-moss/70 mb-4 flex-1">
+                <li class="flex items-start gap-2">
+                  <i
+                    data-lucide="check"
+                    class="w-4 h-4 text-clay mt-0.5 shrink-0"
+                  ></i
+                  >Tenda
+                </li>
+                <li class="flex items-start gap-2">
+                  <i
+                    data-lucide="check"
+                    class="w-4 h-4 text-clay mt-0.5 shrink-0"
+                  ></i
+                  >Matras & bantal
+                </li>
+                <li class="flex items-start gap-2">
+                  <i
+                    data-lucide="check"
+                    class="w-4 h-4 text-clay mt-0.5 shrink-0"
+                  ></i
+                  >Selimut tebal
+                </li>
+                <li class="flex items-start gap-2">
+                  <i
+                    data-lucide="check"
+                    class="w-4 h-4 text-clay mt-0.5 shrink-0"
+                  ></i
+                  >Lampu tenda
+                </li>
+              </ul>
+              <p class="text-[11px] text-moss/45 mb-6 italic">
+                Anak di bawah 5 tahun gratis.
+              </p>
+              <a
+                href="https://wa.me/6281936662117?text=Halo%2C%20saya%20ingin%20booking%20Paket%20Backpacker%20di%20Sembalun%20Cabin%20Camp."
+                target="_blank"
+                rel="noopener"
+                class="text-center border border-moss/20 hover:border-moss text-moss rounded-full py-3 font-mono text-[11px] uppercase tracking-[0.1em] transition-colors"
+                >Booking Paket Ini</a
+              >
+            </div>
+
+            <!-- Package: Regular (highlighted / most popular) -->
+            <div
+              class="relative flex flex-col bg-moss rounded-3xl p-7 shadow-soft lg:-translate-y-3"
+              data-aos="fade-up"
+              data-aos-delay="120"
+            >
+              <span class="ribbon"
+                ><i data-lucide="star" class="w-3 h-3 inline -mt-0.5 mr-1"></i
+                >Favorit</span
+              >
+              <span
+                class="mono-tag text-[10px] uppercase text-moss bg-clay-light self-start px-3 py-1 rounded-full mb-6"
+                >Paling Favorit Â· max 3 pax</span
+              >
+              <h3 class="font-display font-semibold text-2xl text-cream mb-1">
+                Regular
+              </h3>
+              <p class="text-xs text-cream/50 mb-5">Pilihan paling seimbang</p>
+              <div class="mb-6">
+                <span class="font-display font-semibold text-3xl text-cream"
+                  >IDR 255rb</span
+                >
+                <span class="text-sm text-cream/50">/tenda</span>
+              </div>
+              <ul class="space-y-2.5 text-sm text-cream/75 mb-8 flex-1">
+                <li class="flex items-start gap-2">
+                  <i
+                    data-lucide="check"
+                    class="w-4 h-4 text-clay-light mt-0.5 shrink-0"
+                  ></i
+                  >Tenda, matras, bantal
+                </li>
+                <li class="flex items-start gap-2">
+                  <i
+                    data-lucide="check"
+                    class="w-4 h-4 text-clay-light mt-0.5 shrink-0"
+                  ></i
+                  >Selimut tebal
+                </li>
+                <li class="flex items-start gap-2">
+                  <i
+                    data-lucide="check"
+                    class="w-4 h-4 text-clay-light mt-0.5 shrink-0"
+                  ></i
+                  >Lampu tenda
+                </li>
+                <li class="flex items-start gap-2">
+                  <i
+                    data-lucide="check"
+                    class="w-4 h-4 text-clay-light mt-0.5 shrink-0"
+                  ></i
+                  >Sarapan pagi
+                </li>
+              </ul>
+              <a
+                href="https://wa.me/6281936662117?text=Halo%2C%20saya%20ingin%20booking%20Paket%20Regular%20di%20Sembalun%20Cabin%20Camp."
+                target="_blank"
+                rel="noopener"
+                class="text-center bg-clay hover:bg-clay-light text-cream rounded-full py-3 font-mono text-[11px] uppercase tracking-[0.1em] transition-colors"
+                >Booking Paket Ini</a
+              >
+            </div>
+
+            <!-- Package: Glamour -->
+            <div
+              class="flex flex-col bg-stone rounded-3xl p-7 border border-moss/10"
+              data-aos="fade-up"
+              data-aos-delay="180"
+            >
+              <span
+                class="mono-tag text-[10px] uppercase text-clay bg-clay/10 self-start px-3 py-1 rounded-full mb-6"
+                >Premium Â· max 2 pax</span
+              >
+              <h3 class="font-display font-semibold text-2xl text-moss mb-1">
+                Glamour
+              </h3>
+              <p class="text-xs text-moss/50 mb-5">
+                Camping tanpa kompromi kenyamanan
+              </p>
+              <div class="mb-6">
+                <span class="font-display font-semibold text-3xl text-moss"
+                  >IDR 320rb</span
+                >
+                <span class="text-sm text-moss/50">/tenda</span>
+              </div>
+              <ul class="space-y-2.5 text-sm text-moss/70 mb-8 flex-1">
+                <li class="flex items-start gap-2">
+                  <i
+                    data-lucide="check"
+                    class="w-4 h-4 text-clay mt-0.5 shrink-0"
+                  ></i
+                  >Tenda, matras, bantal
+                </li>
+                <li class="flex items-start gap-2">
+                  <i
+                    data-lucide="check"
+                    class="w-4 h-4 text-clay mt-0.5 shrink-0"
+                  ></i
+                  >Selimut tebal & lampu tenda
+                </li>
+                <li class="flex items-start gap-2">
+                  <i
+                    data-lucide="check"
+                    class="w-4 h-4 text-clay mt-0.5 shrink-0"
+                  ></i
+                  >Sarapan pagi
+                </li>
+                <li class="flex items-start gap-2">
+                  <i
+                    data-lucide="check"
+                    class="w-4 h-4 text-clay mt-0.5 shrink-0"
+                  ></i
+                  >Barbeque malam
+                </li>
+              </ul>
+              <a
+                href="https://wa.me/6281936662117?text=Halo%2C%20saya%20ingin%20booking%20Paket%20Glamour%20di%20Sembalun%20Cabin%20Camp."
+                target="_blank"
+                rel="noopener"
+                class="text-center border border-moss/20 hover:border-moss text-moss rounded-full py-3 font-mono text-[11px] uppercase tracking-[0.1em] transition-colors"
+                >Booking Paket Ini</a
+              >
+            </div>
+          </div>
+          <p class="text-xs text-moss/45 mt-8 text-center" data-aos="fade-up">
+            Harga dapat berubah sewaktu-waktu. Konfirmasi ketersediaan tanggal
+            langsung via WhatsApp.
+          </p>
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- 5. GALLERY                                                    -->
+      <!-- ============================================================ -->
+      <section
+        id="galeri"
+        data-section-name="Galeri"
+        class="bg-stone py-24 md:py-32 scroll-mt-24"
+      >
+        <div class="max-w-7xl mx-auto px-5 md:px-10">
+          <div class="mb-14 max-w-2xl" data-aos="fade-up">
+            <span class="signpost mb-6"
+              ><i data-lucide="corner-down-right" class="w-3 h-3"></i>
+              Galeri</span
+            >
+            <h2
+              class="font-display font-semibold text-3xl md:text-5xl leading-[1.1] tracking-tight text-moss"
+            >
+              Setiap sudut, satu alasan untuk kembali.
+            </h2>
+          </div>
+
+          <div
+            class="masonry columns-1 sm:columns-2 lg:columns-3"
+            data-aos="fade-up"
+          >
+            <div
+              class="masonry-item relative rounded-3xl overflow-hidden group"
+            >
+              <img
+                src="asset\images\night.jpg"
+                alt="Panorama pegunungan Sembalun"
+                class="w-full h-[420px] object-cover group-hover:scale-105 transition-transform duration-700"
+                loading="lazy"
+              />
+              <div
+                class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-moss/80 to-transparent p-5"
+              >
+                <p class="mono-tag text-cream text-[11px]">
+                  Rinjani dari lapak camp
+                </p>
+              </div>
+            </div>
+            <div
+              class="masonry-item relative rounded-3xl overflow-hidden group"
+            >
+              <img
+                src="asset/images/SaveClip.App_725971733_18067258367705047_7232396240599961940_n.jpg"
+                alt="Malam di area camp"
+                class="w-full h-[280px] object-cover group-hover:scale-105 transition-transform duration-700"
+                loading="lazy"
+              />
+              <div
+                class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-moss/80 to-transparent p-5"
+              >
+                <p class="mono-tag text-cream text-[11px]">
+                  Malam hangat di bawah lampu tenda
+                </p>
+              </div>
+            </div>
+            <div
+              class="masonry-item relative rounded-3xl overflow-hidden group"
+            >
+              <img
+                src="asset/images/SaveClip.App_727220794_18067258328705047_7923886747010068247_n.jpg"
+                alt="Tenda dengan lampu di malam hari"
+                class="w-full h-[360px] object-cover group-hover:scale-105 transition-transform duration-700"
+                loading="lazy"
+              />
+              <div
+                class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-moss/80 to-transparent p-5"
+              >
+                <p class="mono-tag text-cream text-[11px]">
+                  Deretan tenda setelah matahari turun
+                </p>
+              </div>
+            </div>
+            <div
+              class="masonry-item relative rounded-3xl overflow-hidden group"
+            >
+              <img
+                src="asset/images/SaveClip.App_727159214_18067258313705047_6561859321744105305_n.jpg"
+                alt="Kopi hangat di pagi hari"
+                class="w-full h-[300px] object-cover group-hover:scale-105 transition-transform duration-700"
+                loading="lazy"
+              />
+              <div
+                class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-moss/80 to-transparent p-5"
+              >
+                <p class="mono-tag text-cream text-[11px]">
+                  Pagi cerah di lapak camp
+                </p>
+              </div>
+            </div>
+            <div
+              class="masonry-item relative rounded-3xl overflow-hidden group"
+            >
+              <img
+                src="asset/images/SaveClip.App_724174923_18067258277705047_1860599128480585895_n.jpg"
+                alt="Gerbang Sembalun Cabin Camp"
+                class="w-full h-[340px] object-cover group-hover:scale-105 transition-transform duration-700"
+                loading="lazy"
+              />
+              <div
+                class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-moss/80 to-transparent p-5"
+              >
+                <p class="mono-tag text-cream text-[11px]">
+                  Gerbang camp dan pandangan pertama ke Rinjani
+                </p>
+              </div>
+            </div>
+            <div
+              class="masonry-item relative rounded-3xl overflow-hidden group"
+            >
+              <img
+                src="asset/images/SaveClip.App_724673396_18067258286705047_4192265302236882514_n.jpg"
+                alt="Langit sore di atas camp"
+                class="w-full h-[320px] object-cover group-hover:scale-105 transition-transform duration-700"
+                loading="lazy"
+              />
+              <div
+                class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-moss/80 to-transparent p-5"
+              >
+                <p class="mono-tag text-cream text-[11px]">
+                  Golden hour di camp
+                </p>
+              </div>
+            </div>
+          </div>
+          <!-- Semua foto di atas memakai dokumentasi asli Sembalun Cabin Camp. -->
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- 6. EXPERIENCE (dark, immersive) + SPOT STAMPS                 -->
+      <!-- ============================================================ -->
+      <section
+        id="pengalaman"
+        data-section-name="Pengalaman"
+        class="relative bg-moss py-24 md:py-32 scroll-mt-24 overflow-hidden"
+      >
+        <svg
+          class="absolute top-0 left-0 w-full opacity-[0.06] pointer-events-none"
+          viewBox="0 0 1200 200"
+          preserveAspectRatio="none"
+        >
+          <polygon
+            points="0,200 0,120 120,40 260,110 380,20 520,100 650,50 780,130 900,60 1040,140 1200,80 1200,200"
+            fill="#FFFCF6"
+          />
+        </svg>
+
+        <div class="relative max-w-7xl mx-auto px-5 md:px-10">
+          <div class="mb-14 max-w-2xl" data-aos="fade-up">
+            <span class="signpost signpost--clay mb-6"
+              ><i data-lucide="corner-down-right" class="w-3 h-3"></i>
+              Pengalaman</span
+            >
+            <h2
+              class="font-display font-semibold text-3xl md:text-5xl leading-[1.1] tracking-tight text-cream"
+            >
+              Yang kamu lakukan setelah tenda berdiri.
+            </h2>
+          </div>
+
+          <div
+            class="grid sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-10 mb-16"
+          >
+            <div class="flex flex-col items-start gap-4" data-aos="fade-up">
+              <div
+                class="w-12 h-12 rounded-full bg-cream/10 flex items-center justify-center"
+              >
+                <i data-lucide="flame" class="w-5 h-5 text-clay-light"></i>
+              </div>
+              <h3 class="font-display font-semibold text-lg text-cream">
+                Api Unggun
+              </h3>
+              <p class="text-sm text-cream/60 leading-relaxed">
+                Menyala setiap malam, tempat cerita mengalir sampai larut.
+              </p>
+            </div>
+            <div
+              class="flex flex-col items-start gap-4"
+              data-aos="fade-up"
+              data-aos-delay="50"
+            >
+              <div
+                class="w-12 h-12 rounded-full bg-cream/10 flex items-center justify-center"
+              >
+                <i data-lucide="sunrise" class="w-5 h-5 text-clay-light"></i>
+              </div>
+              <h3 class="font-display font-semibold text-lg text-cream">
+                Sunrise Hunting
+              </h3>
+              <p class="text-sm text-cream/60 leading-relaxed">
+                Berburu momen matahari muncul dari balik punggungan Rinjani.
+              </p>
+            </div>
+            <div
+              class="flex flex-col items-start gap-4"
+              data-aos="fade-up"
+              data-aos-delay="100"
+            >
+              <div
+                class="w-12 h-12 rounded-full bg-cream/10 flex items-center justify-center"
+              >
+                <i data-lucide="camera" class="w-5 h-5 text-clay-light"></i>
+              </div>
+              <h3 class="font-display font-semibold text-lg text-cream">
+                Photography Spot
+              </h3>
+              <p class="text-sm text-cream/60 leading-relaxed">
+                Sudut-sudut terbaik untuk foto, tanpa harus berebut posisi.
+              </p>
+            </div>
+            <div
+              class="flex flex-col items-start gap-4"
+              data-aos="fade-up"
+              data-aos-delay="150"
+            >
+              <div
+                class="w-12 h-12 rounded-full bg-cream/10 flex items-center justify-center"
+              >
+                <i data-lucide="mountain" class="w-5 h-5 text-clay-light"></i>
+              </div>
+              <h3 class="font-display font-semibold text-lg text-cream">
+                Panorama Gunung
+              </h3>
+              <p class="text-sm text-cream/60 leading-relaxed">
+                Rinjani terlihat utuh, baik siang yang cerah maupun malam yang
+                jernih.
+              </p>
+            </div>
+            <div class="flex flex-col items-start gap-4" data-aos="fade-up">
+              <div
+                class="w-12 h-12 rounded-full bg-cream/10 flex items-center justify-center"
+              >
+                <i data-lucide="utensils" class="w-5 h-5 text-clay-light"></i>
+              </div>
+              <h3 class="font-display font-semibold text-lg text-cream">
+                BBQ Malam
+              </h3>
+              <p class="text-sm text-cream/60 leading-relaxed">
+                Tersedia di Paket Glamour - daging bakar dan obrolan panjang.
+              </p>
+            </div>
+            <div
+              class="flex flex-col items-start gap-4"
+              data-aos="fade-up"
+              data-aos-delay="50"
+            >
+              <div
+                class="w-12 h-12 rounded-full bg-cream/10 flex items-center justify-center"
+              >
+                <i data-lucide="stars" class="w-5 h-5 text-clay-light"></i>
+              </div>
+              <h3 class="font-display font-semibold text-lg text-cream">
+                Stargazing
+              </h3>
+              <p class="text-sm text-cream/60 leading-relaxed">
+                Langit tanpa polusi cahaya kota - bintang terlihat jelas dari
+                dalam tenda.
+              </p>
+            </div>
+            <div
+              class="flex flex-col items-start gap-4"
+              data-aos="fade-up"
+              data-aos-delay="100"
+            >
+              <div
+                class="w-12 h-12 rounded-full bg-cream/10 flex items-center justify-center"
+              >
+                <i data-lucide="coffee" class="w-5 h-5 text-clay-light"></i>
+              </div>
+              <h3 class="font-display font-semibold text-lg text-cream">
+                Kopi Pagi
+              </h3>
+              <p class="text-sm text-cream/60 leading-relaxed">
+                Menyeruput kopi sambil menunggu kabut turun dari lereng gunung.
+              </p>
+            </div>
+            <div
+              class="flex flex-col items-start gap-4"
+              data-aos="fade-up"
+              data-aos-delay="150"
+            >
+              <div
+                class="w-12 h-12 rounded-full bg-cream/10 flex items-center justify-center"
+              >
+                <i data-lucide="footprints" class="w-5 h-5 text-clay-light"></i>
+              </div>
+              <h3 class="font-display font-semibold text-lg text-cream">
+                Jalur Trekking Ringan
+              </h3>
+              <p class="text-sm text-cream/60 leading-relaxed">
+                Titik awal yang pas jika ingin lanjut trekking di sekitar
+                Sembalun.
+              </p>
+            </div>
+          </div>
+
+          <!-- Spot stamps: circular sticker row, riffing on travel-destination stickers -->
+          <div class="border-t border-cream/10 pt-12" data-aos="fade-up">
+            <p
+              class="mono-tag text-[10px] uppercase text-cream/45 mb-6 tracking-[0.14em]"
+            >
+              Titik favorit di area camp
+            </p>
+            <div
+              class="grid grid-cols-2 sm:grid-cols-4 gap-6 md:gap-8 max-w-2xl"
+            >
+              <div class="text-center">
+                <div class="spot-stamp mb-3">
+                  <img
+                    src="asset/images/SaveClip.App_724174923_18067258277705047_1860599128480585895_n.jpg"
+                    alt="Gerbang camp"
+                  />
+                </div>
+                <p class="text-cream text-xs font-medium">Gerbang camp</p>
+              </div>
+              <div class="text-center">
+                <div class="spot-stamp mb-3">
+                  <img
+                    src="asset/images/SaveClip.App_723172669_18067258313705047_6561859321744105305_n.jpg"
+                    alt="Rinjani dari lapak camp"
+                  />
+                </div>
+                <p class="text-cream text-xs font-medium">Panorama Rinjani</p>
+              </div>
+              <div class="text-center">
+                <div class="spot-stamp mb-3">
+                  <img
+                    src="asset/images/SaveClip.App_727159214_18067258313705047_6561859321744105305_n.jpg"
+                    alt="Pagi cerah di lapak camp"
+                  />
+                </div>
+                <p class="text-cream text-xs font-medium">Pagi cerah</p>
+              </div>
+              <div class="text-center">
+                <div class="spot-stamp mb-3">
+                  <img
+                    src="asset/images/SaveClip.App_725971733_18067258367705047_7232396240599961940_n.jpg"
+                    alt="Malam hangat di camp"
+                  />
+                </div>
+                <p class="text-cream text-xs font-medium">Malam hangat</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- 7. FACILITIES                                                 -->
+      <!-- ============================================================ -->
+      <section
+        id="fasilitas"
+        data-section-name="Fasilitas"
+        class="bg-stone py-24 md:py-32 scroll-mt-24"
+      >
+        <div class="max-w-7xl mx-auto px-5 md:px-10">
+          <div class="mb-14 max-w-2xl" data-aos="fade-up">
+            <span class="signpost mb-6"
+              ><i data-lucide="corner-down-right" class="w-3 h-3"></i>
+              Fasilitas</span
+            >
+            <h2
+              class="font-display font-semibold text-3xl md:text-5xl leading-[1.1] tracking-tight text-moss"
+            >
+              Semua yang kamu butuhkan, tanpa berlebihan.
+            </h2>
+          </div>
+
+          <div class="grid grid-cols-2 md:grid-cols-5 gap-5">
+            <div class="bg-mist rounded-3xl p-6 text-center" data-aos="fade-up">
+              <i
+                data-lucide="landmark"
+                class="w-6 h-6 text-forest mx-auto mb-4"
+              ></i>
+              <p class="font-display font-semibold text-base text-moss">
+                Musala
+              </p>
+            </div>
+            <div
+              class="bg-mist rounded-3xl p-6 text-center"
+              data-aos="fade-up"
+              data-aos-delay="50"
+            >
+              <i
+                data-lucide="droplet"
+                class="w-6 h-6 text-forest mx-auto mb-4"
+              ></i>
+              <p class="font-display font-semibold text-base text-moss">
+                Toilet Bersih
+              </p>
+            </div>
+            <div
+              class="bg-mist rounded-3xl p-6 text-center"
+              data-aos="fade-up"
+              data-aos-delay="100"
+            >
+              <i data-lucide="car" class="w-6 h-6 text-forest mx-auto mb-4"></i>
+              <p class="font-display font-semibold text-base text-moss">
+                Area Parkir
+              </p>
+            </div>
+            <div
+              class="bg-mist rounded-3xl p-6 text-center"
+              data-aos="fade-up"
+              data-aos-delay="150"
+            >
+              <i data-lucide="zap" class="w-6 h-6 text-forest mx-auto mb-4"></i>
+              <p class="font-display font-semibold text-base text-moss">
+                Titik Charger
+              </p>
+            </div>
+            <div
+              class="bg-mist rounded-3xl p-6 text-center col-span-2 md:col-span-1"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
+              <i
+                data-lucide="flame"
+                class="w-6 h-6 text-forest mx-auto mb-4"
+              ></i>
+              <p class="font-display font-semibold text-base text-moss">
+                Area Api Unggun
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- 8. LOCATION                                                   -->
+      <!-- ============================================================ -->
+      <section
+        id="lokasi"
+        data-section-name="Lokasi"
+        class="bg-mist py-24 md:py-32 scroll-mt-24"
+      >
+        <div
+          class="max-w-7xl mx-auto px-5 md:px-10 grid lg:grid-cols-2 gap-12 items-center"
+        >
+          <div data-aos="fade-up">
+            <span class="signpost mb-6"
+              ><i data-lucide="corner-down-right" class="w-3 h-3"></i>
+              Lokasi</span
+            >
+            <h2
+              class="font-display font-semibold text-3xl md:text-5xl leading-[1.1] tracking-tight text-moss mb-6"
+            >
+              Sembalun, kaki Gunung Rinjani, Lombok Timur.
+            </h2>
+            <p class="text-moss/70 leading-relaxed mb-8 max-w-md">
+              Berada di dataran tinggi Sembalun pada ketinggian sekitar 1.200
+              mdpl, camp ini menghadap langsung ke gugusan Rinjani. Udara sejuk
+              sepanjang tahun, jauh dari kepadatan kota.
+            </p>
+            <div class="space-y-5 mb-9">
+              <div class="flex items-start gap-3">
+                <i
+                  data-lucide="navigation"
+                  class="w-5 h-5 text-clay mt-0.5 shrink-0"
+                ></i>
+                <div>
+                  <p class="text-sm font-medium text-moss">Dari Mataram</p>
+                  <p class="text-sm text-moss/60">
+                    Â± 3-4 jam berkendara melalui jalur Sembalun.
+                  </p>
+                </div>
+              </div>
+              <div class="flex items-start gap-3">
+                <i
+                  data-lucide="mountain-snow"
+                  class="w-5 h-5 text-clay mt-0.5 shrink-0"
+                ></i>
+                <div>
+                  <p class="text-sm font-medium text-moss">Ketinggian lokasi</p>
+                  <p class="text-sm text-moss/60">
+                    Â± 1.200 mdpl - suhu malam bisa mencapai 10°C.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="flex flex-wrap gap-4">
+              <a
+                href="https://maps.app.goo.gl/h4sPnZrVGH33Qm7P9"
+                target="_blank"
+                rel="noopener"
+                class="inline-flex items-center gap-2.5 bg-moss hover:bg-moss-2 text-cream px-6 py-3.5 rounded-full font-mono text-xs uppercase tracking-[0.12em] transition-colors"
+              >
+                <i data-lucide="map" class="w-4 h-4"></i> Buka di Google Maps
+              </a>
+              <a
+                href="https://wa.me/6281936662117?text=Halo%2C%20saya%20ingin%20tanya%20rute%20menuju%20Sembalun%20Cabin%20Camp."
+                target="_blank"
+                rel="noopener"
+                class="inline-flex items-center gap-2.5 border border-moss/25 hover:border-moss text-moss px-6 py-3.5 rounded-full font-mono text-xs uppercase tracking-[0.12em] transition-colors"
+              >
+                Tanya Rute
+              </a>
+            </div>
+          </div>
+
+          <div
+            class="rounded-3xl overflow-hidden shadow-soft h-[420px] lg:h-[480px]"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7895.197941818127!2d116.49878085591314!3d-8.342583282675843!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dcc2d4ba3074ddb%3A0xb3ca85115cd9f4b1!2sSembalun%20Cabin!5e0!3m2!1sen!2sjp!4v1784105156675!5m2!1sen!2sjp"
+              width="100%"
+              height="100%"
+              style="border: 0"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Peta lokasi Sembalun Cabin Camp"
+            >
+            </iframe>
+
+            <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7895.197941818127!2d116.49878085591314!3d-8.342583282675843!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dcc2d4ba3074ddb%3A0xb3ca85115cd9f4b1!2sSembalun%20Cabin!5e0!3m2!1sen!2sjp!4v1784105156675!5m2!1sen!2sjp" width="800" height="600" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe> -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- 9. FAQ                                                        -->
+      <!-- ============================================================ -->
+      <section
+        id="faq"
+        data-section-name="FAQ"
+        class="bg-stone py-24 md:py-32 scroll-mt-24"
+      >
+        <div class="max-w-4xl mx-auto px-5 md:px-10">
+          <div class="mb-14" data-aos="fade-up">
+            <span class="signpost mb-6"
+              ><i data-lucide="corner-down-right" class="w-3 h-3"></i> FAQ</span
+            >
+            <h2
+              class="font-display font-semibold text-3xl md:text-5xl leading-[1.1] tracking-tight text-moss"
+            >
+              Pertanyaan yang sering ditanyakan.
+            </h2>
+          </div>
+
+          <div class="space-y-3" data-aos="fade-up">
+            <details class="group bg-mist rounded-2xl px-6 py-5 open:pb-5">
+              <summary
+                class="flex items-center justify-between cursor-pointer gap-4"
+              >
+                <span class="font-display font-semibold text-lg text-moss"
+                  >Apa saja yang sudah termasuk dalam paket camping?</span
+                >
+                <i
+                  data-lucide="chevron-down"
+                  class="faq-chevron w-5 h-5 text-clay shrink-0"
+                ></i>
+              </summary>
+              <p class="text-sm text-moss/65 leading-relaxed mt-3">
+                Tergantung paket yang dipilih. Paket Backpacker, Regular, dan
+                Glamour sudah termasuk tenda, matras, selimut tebal, bantal, dan
+                lampu tenda - sementara Paket Regular dan Glamour juga sudah
+                termasuk sarapan. Jika membawa perlengkapan sendiri, kamu bisa
+                memilih Paket Own Tent.
+              </p>
+            </details>
+
+            <details class="group bg-mist rounded-2xl px-6 py-5 open:pb-5">
+              <summary
+                class="flex items-center justify-between cursor-pointer gap-4"
+              >
+                <span class="font-display font-semibold text-lg text-moss"
+                  >Apakah anak-anak boleh ikut camping di sini?</span
+                >
+                <i
+                  data-lucide="chevron-down"
+                  class="faq-chevron w-5 h-5 text-clay shrink-0"
+                ></i>
+              </summary>
+              <p class="text-sm text-moss/65 leading-relaxed mt-3">
+                Tentu boleh. Untuk Paket Backpacker, anak di bawah 5 tahun tidak
+                dikenakan biaya tambahan. Untuk paket lainnya, silakan
+                konfirmasi langsung via WhatsApp agar kami bisa menyiapkan
+                tempat yang sesuai.
+              </p>
+            </details>
+
+            <details class="group bg-mist rounded-2xl px-6 py-5 open:pb-5">
+              <summary
+                class="flex items-center justify-between cursor-pointer gap-4"
+              >
+                <span class="font-display font-semibold text-lg text-moss"
+                  >Bagaimana jika saya membawa tenda dan perlengkapan
+                  sendiri?</span
+                >
+                <i
+                  data-lucide="chevron-down"
+                  class="faq-chevron w-5 h-5 text-clay shrink-0"
+                ></i>
+              </summary>
+              <p class="text-sm text-moss/65 leading-relaxed mt-3">
+                Pilih Paket Own Tent. Kamu tetap mendapat akses ke seluruh
+                fasilitas camp - musala, toilet, area parkir, titik charger, dan
+                area api unggun - dengan biaya lapak yang lebih terjangkau.
+              </p>
+            </details>
+
+            <details class="group bg-mist rounded-2xl px-6 py-5 open:pb-5">
+              <summary
+                class="flex items-center justify-between cursor-pointer gap-4"
+              >
+                <span class="font-display font-semibold text-lg text-moss"
+                  >Apakah ada listrik dan sinyal di lokasi?</span
+                >
+                <i
+                  data-lucide="chevron-down"
+                  class="faq-chevron w-5 h-5 text-clay shrink-0"
+                ></i>
+              </summary>
+              <p class="text-sm text-moss/65 leading-relaxed mt-3">
+                Tersedia titik charger di area camp untuk mengisi daya
+                perangkat. Sinyal seluler umumnya masih dapat digunakan, meski
+                kekuatannya bisa bervariasi tergantung operator.
+              </p>
+            </details>
+
+            <details class="group bg-mist rounded-2xl px-6 py-5 open:pb-5">
+              <summary
+                class="flex items-center justify-between cursor-pointer gap-4"
+              >
+                <span class="font-display font-semibold text-lg text-moss"
+                  >Bagaimana cara menuju Sembalun Cabin Camp?</span
+                >
+                <i
+                  data-lucide="chevron-down"
+                  class="faq-chevron w-5 h-5 text-clay shrink-0"
+                ></i>
+              </summary>
+              <p class="text-sm text-moss/65 leading-relaxed mt-3">
+                Lokasi berada di kawasan Sembalun, Lombok Timur, sekitar 3-4 jam
+                berkendara dari Mataram. Titik lokasi lengkap tersedia pada
+                bagian Lokasi di halaman ini, atau tanyakan rute tercepat
+                langsung via WhatsApp.
+              </p>
+            </details>
+
+            <details class="group bg-mist rounded-2xl px-6 py-5 open:pb-5">
+              <summary
+                class="flex items-center justify-between cursor-pointer gap-4"
+              >
+                <span class="font-display font-semibold text-lg text-moss"
+                  >Bagaimana cara booking dan apakah perlu DP?</span
+                >
+                <i
+                  data-lucide="chevron-down"
+                  class="faq-chevron w-5 h-5 text-clay shrink-0"
+                ></i>
+              </summary>
+              <p class="text-sm text-moss/65 leading-relaxed mt-3">
+                Booking dilakukan langsung melalui WhatsApp. Tim kami akan
+                membantu memilihkan paket, mengecek ketersediaan tanggal, dan
+                menjelaskan ketentuan pembayaran secara langsung.
+              </p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- 10. FINAL CTA                                                 -->
+      <!-- ============================================================ -->
+      <section
+        data-section-name="Booking"
+        class="relative bg-moss py-28 md:py-36 overflow-hidden"
+      >
+        <div class="absolute inset-0 opacity-20">
+          <img
+            src="asset/images/SaveClip.App_724673396_18067258286705047_4192265302236882514_n.jpg"
+            alt=""
+            class="w-full h-full object-cover"
+          />
+        </div>
+        <div
+          class="absolute inset-0 bg-gradient-to-b from-moss via-moss/95 to-moss"
+        ></div>
+
+        <div
+          class="relative max-w-3xl mx-auto px-5 md:px-10 text-center"
+          data-aos="fade-up"
+        >
+          <span class="signpost signpost--clay mb-8"
+            ><i data-lucide="corner-down-right" class="w-3 h-3"></i>
+            Booking</span
+          >
+          <h2
+            class="font-display font-semibold text-4xl md:text-6xl leading-[1.08] tracking-tight text-cream mb-6"
+          >
+            Tenda sudah menunggu.<br class="hidden sm:block" />
+            Tinggal kamu yang datang.
+          </h2>
+          <p
+            class="text-cream/70 text-base md:text-lg mb-10 max-w-lg mx-auto leading-relaxed"
+          >
+            Kirim pesan sekarang, dan biarkan Rinjani menyambutmu besok pagi.
+          </p>
+          <a
+            href="https://wa.me/6281936662117?text=Halo%2C%20saya%20ingin%20booking%20camping%20di%20Sembalun%20Cabin%20Camp."
+            target="_blank"
+            rel="noopener"
+            class="inline-flex items-center gap-3 bg-clay hover:bg-clay-light text-cream px-9 py-5 rounded-full font-mono text-sm uppercase tracking-[0.14em] transition-all hover:-translate-y-0.5 shadow-soft"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M17.6 6.3A9 9 0 0 0 3 17.7L2 22l4.4-1.1A9 9 0 1 0 17.6 6.3ZM12 20a7.9 7.9 0 0 1-4-1.1l-.3-.2-2.6.7.7-2.5-.2-.3A8 8 0 1 1 12 20Zm4.4-6c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1s-.6.8-.7.9-.3.2-.5.1a6.6 6.6 0 0 1-1.9-1.2 7 7 0 0 1-1.3-1.6c-.1-.2 0-.4.1-.5l.4-.4.2-.4v-.4c0-.1-.5-1.3-.7-1.7-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.6.3 2.7 2.7 0 0 0-.9 2 4.7 4.7 0 0 0 1 2.5 10.8 10.8 0 0 0 4.1 3.6c.6.2 1 .4 1.4.5a3.3 3.3 0 0 0 1.5.1 2.5 2.5 0 0 0 1.6-1.1 2 2 0 0 0 .1-1.1c-.1-.1-.2-.2-.5-.3Z"
+              />
+            </svg>
+            +62 819-3666-2117
+          </a>
+          <p class="mono-tag text-[11px] text-cream/40 mt-5">
+            biasanya dibalas dalam beberapa menit
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <!-- ============================================================ -->
+    <!-- FOOTER                                                        -->
+    <!-- ============================================================ -->
+    <footer class="bg-moss-2 text-cream/60 py-14">
+      <div
+        class="max-w-7xl mx-auto px-5 md:px-10 flex flex-col md:flex-row justify-between gap-8 items-start md:items-center"
+      >
+        <div class="flex items-center gap-2.5">
+          <svg
+            width="30"
+            height="30"
+            viewBox="0 0 34 34"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M2 26L11 10L16 18L20 12L32 26H2Z" fill="#5FCBE0" />
+            <path d="M16 18L20 12L24 18L20 20L16 18Z" fill="#FF7A45" />
+            <path d="M20 26V21L23 23V26H20Z" fill="#FFC352" />
+          </svg>
+          <div>
+            <p class="font-display font-semibold text-cream text-base">
+              Sembalun Cabin Camp
+            </p>
+            <p class="text-xs text-cream/40">
+              Camping dengan panorama langsung ke Rinjani.
+            </p>
+          </div>
+        </div>
+        <div class="flex flex-col gap-1.5 text-sm">
+          <a
+            href="https://wa.me/6281936662117"
+            target="_blank"
+            rel="noopener"
+            class="hover:text-cream transition-colors"
+            >WhatsApp: +62 819-3666-2117</a
+          >
+          <span>Sembalun, Lombok Timur, Nusa Tenggara Barat</span>
+        </div>
+        <p class="text-xs text-cream/30">
+          &copy; 2026 Sembalun Cabin Camp. Semua hak dilindungi.
+        </p>
+      </div>
+    </footer>
+
+    <!-- Floating WhatsApp button -->
+    <a
+      href="https://wa.me/6281936662117?text=Halo%2C%20saya%20ingin%20booking%20camping%20di%20Sembalun%20Cabin%20Camp."
+      target="_blank"
+      rel="noopener"
+      aria-label="Booking via WhatsApp"
+      class="fixed bottom-6 right-6 z-40 w-14 h-14 rounded-full bg-clay hover:bg-clay-light shadow-soft flex items-center justify-center transition-all hover:scale-105"
+    >
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="#FFFCF6">
+        <path
+          d="M17.6 6.3A9 9 0 0 0 3 17.7L2 22l4.4-1.1A9 9 0 1 0 17.6 6.3ZM12 20a7.9 7.9 0 0 1-4-1.1l-.3-.2-2.6.7.7-2.5-.2-.3A8 8 0 1 1 12 20Zm4.4-6c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1s-.6.8-.7.9-.3.2-.5.1a6.6 6.6 0 0 1-1.9-1.2 7 7 0 0 1-1.3-1.6c-.1-.2 0-.4.1-.5l.4-.4.2-.4v-.4c0-.1-.5-1.3-.7-1.7-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.6.3 2.7 2.7 0 0 0-.9 2 4.7 4.7 0 0 0 1 2.5 10.8 10.8 0 0 0 4.1 3.6c.6.2 1 .4 1.4.5a3.3 3.3 0 0 0 1.5.1 2.5 2.5 0 0 0 1.6-1.1 2 2 0 0 0 .1-1.1c-.1-.1-.2-.2-.5-.3Z"
+        />
+      </svg>
+    </a>
+
+    <!-- ============================================================ -->
+    <!-- SCRIPTS                                                       -->
+    <!-- ============================================================ -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      // Initialize icon set
+      lucide.createIcons();
+
+      // Initialize scroll-reveal animations (subtle, once per element)
+      AOS.init({
+        duration: 900,
+        once: true,
+        easing: "ease-in-out-cubic",
+        offset: 60,
+      });
+
+      const prefersReducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
+
+      // Sticky header: transparent over hero, solid after scrolling
+      const header = document.getElementById("site-header");
+      const menuBtn = document.getElementById("menu-btn");
+      const mobileMenu = document.getElementById("mobile-menu");
+
+      function onHeaderScroll() {
+        if (window.scrollY > 60) {
+          header.classList.add("bg-moss/95", "backdrop-blur", "shadow-md");
+        } else {
+          header.classList.remove("bg-moss/95", "backdrop-blur", "shadow-md");
+        }
+      }
+      window.addEventListener("scroll", onHeaderScroll, { passive: true });
+      onHeaderScroll();
+
+      // Mobile menu toggle
+      menuBtn.addEventListener("click", () => {
+        const isHidden = mobileMenu.classList.contains("hidden");
+        mobileMenu.classList.toggle("hidden");
+        menuBtn.innerHTML = isHidden
+          ? '<i data-lucide="x" class="w-6 h-6"></i>'
+          : '<i data-lucide="menu" class="w-6 h-6"></i>';
+        lucide.createIcons();
+      });
+      mobileMenu.querySelectorAll("a").forEach((a) =>
+        a.addEventListener("click", () => {
+          mobileMenu.classList.add("hidden");
+          menuBtn.innerHTML = '<i data-lucide="menu" class="w-6 h-6"></i>';
+          lucide.createIcons();
+        }),
+      );
+
+      // ============================================================
+      // HERO SLIDESHOW - auto-rotating photos with narrative labels
+      // ============================================================
+      const slides = document.querySelectorAll(".hero-slide");
+      const dots = document.querySelectorAll(".hero-dot");
+      const expCard = document.getElementById("exp-card");
+      const expIcon = document.getElementById("exp-icon");
+      const expTitle = document.getElementById("exp-title");
+      const expTime = document.getElementById("exp-time");
+      let heroIndex = 0;
+      let heroTimer = null;
+
+      function showHeroSlide(i) {
+        const active = slides[i];
+        slides.forEach((s, idx) => s.classList.toggle("is-active", idx === i));
+        dots.forEach((d, idx) => d.classList.toggle("is-active", idx === i));
+        if (active && expCard) {
+          expIcon.textContent = active.dataset.icon || "";
+          expTitle.textContent = active.dataset.title || "";
+          expTime.textContent = active.dataset.time || "";
+          expCard.classList.remove("exp-fade-enter");
+          void expCard.offsetWidth; // restart animation
+          expCard.classList.add("exp-fade-enter");
+        }
+        heroIndex = i;
+      }
+      function nextHeroSlide() {
+        showHeroSlide((heroIndex + 1) % slides.length);
+      }
+      function startHeroTimer() {
+        if (prefersReducedMotion) return;
+        clearInterval(heroTimer);
+        heroTimer = setInterval(nextHeroSlide, 6500);
+      }
+      dots.forEach((d) =>
+        d.addEventListener("click", () => {
+          showHeroSlide(parseInt(d.dataset.slide, 10));
+          startHeroTimer();
+        }),
+      );
+      if (slides.length) {
+        showHeroSlide(0);
+        startHeroTimer();
+      }
+
+      // ============================================================
+      // SCROLL "TRAIL" PROGRESS - page reads as a climb to the summit
+      // ============================================================
+      const trailProgress = document.getElementById("trail-progress");
+      const trailMarker = document.getElementById("trail-marker");
+
+      function onTrailScroll() {
+        const doc = document.documentElement;
+        const scrollTop = doc.scrollTop || document.body.scrollTop;
+        const scrollHeight = doc.scrollHeight - doc.clientHeight || 1;
+        const pct = Math.min(
+          100,
+          Math.max(0, (scrollTop / scrollHeight) * 100),
+        );
+        trailProgress.style.width = pct + "%";
+        trailMarker.style.left = pct + "%";
+        trailMarker.classList.toggle("is-visible", scrollTop > 80);
+      }
+      window.addEventListener("scroll", onTrailScroll, { passive: true });
+      onTrailScroll();
+
+      // ============================================================
+      // SECTION PILL - shows which part of the trip you're on
+      // ============================================================
+      const sectionPill = document.getElementById("section-pill");
+      const sectionPillText = document.getElementById("section-pill-text");
+      const namedSections = document.querySelectorAll("[data-section-name]");
+
+      const sectionObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              sectionPillText.textContent = entry.target.dataset.sectionName;
+            }
+          });
+        },
+        { rootMargin: "-45% 0px -45% 0px", threshold: 0 },
+      );
+      namedSections.forEach((s) => sectionObserver.observe(s));
+
+      function onPillVisibility() {
+        const y = window.scrollY || document.documentElement.scrollTop;
+        const nearBottom =
+          window.innerHeight + y >= document.documentElement.scrollHeight - 40;
+        sectionPill.classList.toggle(
+          "is-visible",
+          y > window.innerHeight * 0.6 && !nearBottom,
+        );
+      }
+      window.addEventListener("scroll", onPillVisibility, { passive: true });
+      onPillVisibility();
+
+      // ============================================================
+      // LIVE COUNTERS - numbers climb into view once, on scroll
+      // ============================================================
+      const counters = document.querySelectorAll(".counter");
+      const counterObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            const el = entry.target;
+            const target = parseInt(el.dataset.target, 10) || 0;
+            const suffix = el.dataset.suffix || "";
+            if (prefersReducedMotion) {
+              el.textContent = target + suffix;
+              counterObserver.unobserve(el);
+              return;
+            }
+            const duration = 1400;
+            const start = performance.now();
+            function tick(now) {
+              const p = Math.min(1, (now - start) / duration);
+              const eased = 1 - Math.pow(1 - p, 3);
+              el.textContent = Math.round(eased * target) + suffix;
+              if (p < 1) requestAnimationFrame(tick);
+            }
+            requestAnimationFrame(tick);
+            counterObserver.unobserve(el);
+          });
+        },
+        { threshold: 0.6 },
+      );
+      counters.forEach((c) => counterObserver.observe(c));
+    </script>
+  </body>
+</html>
